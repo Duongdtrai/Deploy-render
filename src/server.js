@@ -3,8 +3,10 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const express = require('express');
 const cookieParser = require('cookie-parser');
-// const swaggerUi = require('swagger-ui-express');
-// const swaggerDocument = require('./swagger/doc');
+const swaggerUi = require('swagger-ui-express');
+console.log('swagger-UI');
+const swaggerDocument = require('./swagger/doc');
+console.log('swagger-UI');
 const router = require('./routes');
 
 const app = express();
@@ -23,6 +25,7 @@ app.use(bodyParser.json());
 // cookie-parser
 app.use(cookieParser());
 // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api', router);
 
 app.listen(port, () => {
